@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Superstore Profit-Loss prediction</title>
+        <!-- <link rel="stylesheet" type="text/css" href="/Data/Study/Ai_adventures/Projects/Machine_Learning/Regression/Super_Store_profit-loss_prediction/FinalProject/static/main.css"> -->
+        <style>
+        body {
+            background-image:url(static/img.jpg);
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .Detail{
+            margin: 35px 35px;
+            float: left;
+            min-height: 50%;
+            width:55%;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.8);
+            background: rgba(116, 116, 116, 0.85);
+            padding: 0px 1px 15px 10px;
+            box-sizing: content-box;
+            border-radius: 6px; /*Smoothens the curves of the box*/
+        }
+        .Detail:hover{
+            background-color: rgba(0, 0, 0, 0.85);
+            transition-duration: 0.3s;
+        }
+        .Detail h1{
+            font-weight:bolder;
+            color: beige;
+            font-size:34px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .Detail p{
+            color: rgb(225, 222, 222);
+            text-align: justify;
+            padding-right: 20px;
+            font-size: 19px;
+            font-family: Helvetica;
+        }
+
+        .login {
+            float: right;
+            margin: 35px 35px ;
+            min-height: 10%;
+            width: 30%;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.8);
+            background: rgba(252, 252, 252, 0.8);
+            padding: 25px 1px 15px 10px;
+            box-sizing: content-box;
+            border-radius: 6px; /*Smoothens the curves of the box*/
+        }
+
+        .FI:hover{
+            background-color: rgb(213, 218, 222);
+            transition-duration: 0.3s;
+        }
+        .FI {
+            display: block;
+            margin: 0px 30px 0px;
+            padding: 5px;
+            width: 80%;
+            height: 12%;
+            box-sizing: border-box;
+            border:none; /* border of input boxes */
+            outline: none;
+            border-bottom: 1px solid #aaa;
+            border-radius: 6px;
+            font: size 12px;
+        }
+
+        .sb:hover{
+            background-color: rgb(1, 108, 230);
+            transition-duration: 0.3s;
+        }
+        .sb{
+            background-color: #767676;
+            color: white;
+            display: block;
+            width:40%;
+            height:35px;
+            margin:auto; /*button at the center*/
+            border-radius: 2px;
+            border:none;
+            font-size:  16px;
+            cursor: pointer;
+            font-family: Helvetica;
+        }
+        .prediction{
+            height: auto;
+            width: 30%;
+            background-color: rgb(255, 255, 255,0.85);
+            margin-top: 50px;
+            margin-left: 200px;
+            padding: 0px 15px 0px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.8);
+            float:left;
+            display: block;
+        }
+        .prediction:hover{
+            background-color: rgb(255, 255, 255);
+            transition-duration: 0.3s;
+        }
+        .prediction p{
+            margin-left: 37px;
+            color: rgb(1, 108, 230);
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: xx-large;
+        }
+    </style>
+    <body>
+        <header>
+            <div class="Detail">
+                <h1>Superstore Profit-Loss Prediction </h1>
+                <p>
+                    A supermarket is a self-service shop offering a wide variety of food, beverages and household products, organized into sections. This kind of store is larger and has a wider selection than earlier grocery stores, but is smaller and more limited in the range of merchandise than a hypermarket or big-box market.<br><br>
+                    A superstore is a very large supermarket, often selling household goods, clothes, and electrical goods, as well as food. Superstores typically charge anywhere from 15 to 45 percent less than their smaller counterparts.<br><br>
+                    Goal is to predict profit and loss using machine learning model trained on prior data
+                </p>
+            </div>
+        </header>
+        <main>
+            <div class="login">
+                <form action="/predict "method="POST"> <!--whenever we click the submit button all the from data will be sent to this url-->
+                <form method="post">
+                    <input type="text" name="Ship Mode" class="FI" placeholder="Shipping Mode" required="required" /><br>
+                    <input type="text" name="Segment" class="FI" placeholder="Segment" required="required" /><br>
+                    <input type="text" name="City" class="FI"  placeholder="City" required="required" /><br>
+                    <input type="text" name="State"  class="FI" placeholder="State" required="required" /><br>
+                    <input type="text" name="Postal Code"  class="FI" placeholder="Postal Code" required="required" /><br>
+                    <input type="text" name="Region"  class="FI" placeholder="Region" required="required" /><br>
+                    <input type="text" name="Category"  class="FI" placeholder="Category" required="required" /><br>
+                    <input type="text" name="Sub-Category"  class="FI" placeholder="Sub-Category" required="required" /><br>
+                    <input type="text" name="Sales"  class="FI" placeholder="Sales" required="required" /><br>
+                    <input type="text" name="Quantity"  class="FI" placeholder="Quantity" required="required" /><br>
+                    <input type="text" name="Discount"  class="FI" placeholder="Discount" required="required" /><br>
+                    <button type="submit" class="sb">Predict</button>
+                </form>
+            </div>
+            {%if pred%}
+            <span class="prediction">
+                <p>
+                    {{pred}}<br>
+                </p>
+            </span>
+            {% endif %}
+        </main> 
+    </body>
+</html>
+
+
